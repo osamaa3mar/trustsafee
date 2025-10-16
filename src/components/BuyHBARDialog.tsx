@@ -43,17 +43,17 @@ export default function BuyHBARDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="relative overflow-hidden bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white border-0 shadow-lg shadow-purple-500/30 transition-all duration-300 hover:shadow-purple-500/50 hover:scale-[1.02]">
+        <Button className="relative overflow-hidden bg-gradient-to-r from-[#b8923a] to-[#ddb146] hover:from-[#a6822f] hover:to-[#b8923a] text-white border-0 shadow-lg shadow-[#ddb146]/20 transition-all duration-300 hover:shadow-[#ddb146]/40 hover:scale-[1.02] w-full sm:w-auto">
           <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity"></div>
           <TrendingUp className="w-4 h-4 mr-2" />
           <span className="relative z-10">Buy HBAR</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-gradient-to-br from-slate-900 to-slate-950 border-white/10 text-white shadow-2xl">
+      <DialogContent className="bg-gradient-to-br from-slate-900 to-slate-950 border-white/10 text-white shadow-2xl max-w-[95vw] sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-3 text-2xl">
-            <div className="p-2 rounded-lg bg-gradient-to-br from-purple-500/20 to-blue-500/20 border border-white/10">
-              <Wallet className="w-5 h-5 text-purple-400" />
+          <DialogTitle className="flex items-center gap-2 sm:gap-3 text-xl sm:text-2xl">
+            <div className="p-1.5 sm:p-2 rounded-lg bg-gradient-to-br from-[#ddb146]/20 to-[#f4c563]/20 border border-white/10">
+              <Wallet className="w-4 h-4 sm:w-5 sm:h-5 text-[#ddb146]" />
             </div>
             <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               Buy HBAR
@@ -61,10 +61,10 @@ export default function BuyHBARDialog() {
           </DialogTitle>
         </DialogHeader>
 
-        <div className="space-y-5 pt-4">
+        <div className="space-y-4 sm:space-y-5 pt-3 sm:pt-4">
           {/* Amount Input */}
           <div className="space-y-2">
-            <label className="text-sm font-medium text-white/80 uppercase tracking-wider flex items-center gap-2">
+            <label className="text-xs sm:text-sm font-medium text-white/80 uppercase tracking-wider flex items-center gap-2">
               <span>Amount (JOD)</span>
             </label>
             <div className="relative">
@@ -73,10 +73,10 @@ export default function BuyHBARDialog() {
                 onChange={(e) => setAmount(e.target.value)}
                 type="number"
                 min={1}
-                className="bg-white/5 border-white/10 text-white text-lg h-12 pl-4 pr-16 rounded-xl focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all"
+                className="bg-white/5 border-white/10 text-white text-base sm:text-lg h-11 sm:h-12 pl-3 sm:pl-4 pr-14 sm:pr-16 rounded-xl focus:border-[#ddb146]/50 focus:ring-2 focus:ring-[#ddb146]/20 transition-all"
                 placeholder="50"
               />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 font-medium">
+              <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-white/50 font-medium text-sm">
                 JOD
               </span>
             </div>
@@ -88,16 +88,16 @@ export default function BuyHBARDialog() {
 
           {/* Status Display */}
           {status && (
-            <div className="rounded-xl bg-white/5 border border-white/10 p-4 backdrop-blur-sm">
+            <div className="rounded-xl bg-white/5 border border-white/10 p-3 sm:p-4 backdrop-blur-sm">
               <div className="flex items-center gap-3">
                 {status.state === "completed" ? (
-                  <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-green-400 flex-shrink-0" />
                 ) : (
-                  <Clock className="w-5 h-5 text-yellow-400 animate-pulse flex-shrink-0" />
+                  <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 animate-pulse flex-shrink-0" />
                 )}
                 <div className="flex-1 space-y-1">
                   <p className="text-xs text-white/60 uppercase tracking-wider">Payment Reference</p>
-                  <p className="text-sm">
+                  <p className="text-xs sm:text-sm">
                     <span className="font-mono text-white/90">{status.ref.slice(0, 8)}…</span>
                     {" · "}
                     <span
@@ -117,7 +117,7 @@ export default function BuyHBARDialog() {
           <Button
             disabled={loading}
             onClick={startBuy}
-            className="w-full h-12 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white border-0 shadow-lg shadow-purple-500/30 transition-all duration-300 hover:shadow-purple-500/50 disabled:opacity-50 disabled:cursor-not-allowed text-base font-semibold"
+            className="w-full h-11 sm:h-12 bg-gradient-to-r from-[#b8923a] to-[#ddb146] hover:from-[#a6822f] hover:to-[#b8923a] text-white border-0 shadow-lg shadow-[#ddb146]/20 transition-all duration-300 hover:shadow-[#ddb146]/40 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base font-semibold"
           >
             {loading ? (
               <span className="flex items-center gap-2">
@@ -133,7 +133,7 @@ export default function BuyHBARDialog() {
           </Button>
 
           {/* Info Footer */}
-          <div className="pt-3 border-t border-white/10">
+          <div className="pt-2 sm:pt-3 border-t border-white/10">
             <p className="text-xs text-white/50 text-center">
               Payment will be processed via CliQ instantly
             </p>

@@ -21,7 +21,7 @@ const badge = (s: string) => {
   };
   
   return (
-    <Badge variant={config.variant} className={`${config.color} flex items-center gap-1.5 font-medium`}>
+    <Badge variant={config.variant} className={`${config.color} flex items-center gap-1.5 font-medium text-xs sm:text-sm`}>
       {icons[s]}
       {s}
     </Badge>
@@ -35,35 +35,35 @@ export default function TradeHistory() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-4 sm:p-6">
+      <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
         {/* Header */}
         <div className="flex items-center gap-3">
-          <div className="w-1 h-8 bg-gradient-to-b from-purple-500 to-blue-500 rounded-full"></div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+          <div className="w-1 h-6 sm:h-8 bg-gradient-to-b from-[#ddb146] to-[#f4c563] rounded-full"></div>
+          <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
             Trade History
           </h1>
         </div>
 
         {/* Table Container */}
-        <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-xl shadow-2xl overflow-hidden">
+        <div className="rounded-xl sm:rounded-2xl border border-white/10 bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-xl shadow-2xl overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full">
+            <table className="w-full min-w-[600px]">
               <thead>
                 <tr className="border-b border-white/10">
-                  <th className="text-left px-6 py-4 text-xs font-semibold text-white/60 uppercase tracking-wider">
+                  <th className="text-left px-3 sm:px-6 py-3 sm:py-4 text-xs font-semibold text-white/60 uppercase tracking-wider">
                     Time
                   </th>
-                  <th className="text-left px-6 py-4 text-xs font-semibold text-white/60 uppercase tracking-wider">
+                  <th className="text-left px-3 sm:px-6 py-3 sm:py-4 text-xs font-semibold text-white/60 uppercase tracking-wider">
                     Side
                   </th>
-                  <th className="text-left px-6 py-4 text-xs font-semibold text-white/60 uppercase tracking-wider">
+                  <th className="text-left px-3 sm:px-6 py-3 sm:py-4 text-xs font-semibold text-white/60 uppercase tracking-wider">
                     Asset
                   </th>
-                  <th className="text-right px-6 py-4 text-xs font-semibold text-white/60 uppercase tracking-wider">
+                  <th className="text-right px-3 sm:px-6 py-3 sm:py-4 text-xs font-semibold text-white/60 uppercase tracking-wider">
                     Amount
                   </th>
-                  <th className="text-left px-6 py-4 text-xs font-semibold text-white/60 uppercase tracking-wider">
+                  <th className="text-left px-3 sm:px-6 py-3 sm:py-4 text-xs font-semibold text-white/60 uppercase tracking-wider">
                     Status
                   </th>
                 </tr>
@@ -71,20 +71,20 @@ export default function TradeHistory() {
               <tbody>
                 {isLoading && (
                   <tr>
-                    <td className="px-6 py-8 text-center" colSpan={5}>
+                    <td className="px-3 sm:px-6 py-6 sm:py-8 text-center" colSpan={5}>
                       <div className="flex items-center justify-center gap-3 text-white/60">
-                        <Loader2 className="w-5 h-5 animate-spin" />
-                        <span>Loading trades...</span>
+                        <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
+                        <span className="text-sm sm:text-base">Loading trades...</span>
                       </div>
                     </td>
                   </tr>
                 )}
                 {!isLoading && data?.length === 0 && (
                   <tr>
-                    <td className="px-6 py-12 text-center" colSpan={5}>
+                    <td className="px-3 sm:px-6 py-8 sm:py-12 text-center" colSpan={5}>
                       <div className="flex flex-col items-center gap-2 text-white/40">
-                        <TrendingUp className="w-8 h-8" />
-                        <span>No trades yet</span>
+                        <TrendingUp className="w-6 h-6 sm:w-8 sm:h-8" />
+                        <span className="text-sm sm:text-base">No trades yet</span>
                       </div>
                     </td>
                   </tr>
@@ -94,7 +94,7 @@ export default function TradeHistory() {
                     key={t.id} 
                     className="border-t border-white/5 hover:bg-white/5 transition-colors duration-150"
                   >
-                    <td className="px-6 py-4 text-sm text-white/80">
+                    <td className="px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm text-white/80">
                       <div className="flex flex-col">
                         <span className="font-medium">
                           {new Date(t.createdAt).toLocaleDateString()}
@@ -104,32 +104,32 @@ export default function TradeHistory() {
                         </span>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-2">
+                    <td className="px-3 sm:px-6 py-3 sm:py-4">
+                      <div className="flex items-center gap-1.5 sm:gap-2">
                         {t.side === "BUY" ? (
                           <>
-                            <TrendingUp className="w-4 h-4 text-green-400" />
-                            <span className="text-sm font-semibold text-green-400">BUY</span>
+                            <TrendingUp className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400" />
+                            <span className="text-xs sm:text-sm font-semibold text-green-400">BUY</span>
                           </>
                         ) : (
                           <>
-                            <TrendingDown className="w-4 h-4 text-red-400" />
-                            <span className="text-sm font-semibold text-red-400">SELL</span>
+                            <TrendingDown className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-400" />
+                            <span className="text-xs sm:text-sm font-semibold text-red-400">SELL</span>
                           </>
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-sm font-medium text-white/90">
+                    <td className="px-3 sm:px-6 py-3 sm:py-4">
+                      <span className="inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg bg-white/5 border border-white/10 text-xs sm:text-sm font-medium text-white/90">
                         {t.asset}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-right">
-                      <span className="text-sm font-semibold text-white">
+                    <td className="px-3 sm:px-6 py-3 sm:py-4 text-right">
+                      <span className="text-xs sm:text-sm font-semibold text-white">
                         {Number(t.amount).toLocaleString()}
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 sm:px-6 py-3 sm:py-4">
                       {badge(t.status)}
                     </td>
                   </tr>
@@ -141,7 +141,7 @@ export default function TradeHistory() {
 
         {/* Footer Info */}
         {!isLoading && data?.length > 0 && (
-          <div className="flex items-center justify-between px-2 text-sm text-white/50">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 px-2 text-xs sm:text-sm text-white/50">
             <span>{data.length} {data.length === 1 ? 'trade' : 'trades'} total</span>
             <span>Updated {new Date().toLocaleTimeString()}</span>
           </div>

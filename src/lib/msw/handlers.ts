@@ -8,8 +8,7 @@ let trades: any[] = [
 
 export const handlers = [
   http.get("/api/balances", () => HttpResponse.json([
-    { currency: "HBAR", available: 1523.77, locked: 120.00 },
-    { currency: "tHBAR", available: 800.00, locked: 0 },
+    { currency: "HBAR", available: 1523.77, locked: 120.00 }
   ])),
 
   http.get("/api/locks", () => HttpResponse.json([
@@ -25,6 +24,12 @@ export const handlers = [
     trades = [{ id, side: "BUY", asset: "HBAR", amount: 50, status: "PENDING", createdAt: new Date().toISOString() }, ...trades];
     return HttpResponse.json({ paymentRef: id, status: fakeStatus[id] });
   }),
+  http.post("/api/transfer", async ({ request }) => {
+  const body = await request.json();
+  console.log("Mock transfer:", body);
+  return HttpResponse.json({ status: "success" });
+}),
+
 
   http.get("/api/buy/:ref", ({ params }) =>
     HttpResponse.json({ paymentRef: params.ref, status: fakeStatus[String(params.ref)] || "pending" })
